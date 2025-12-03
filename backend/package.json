@@ -9,7 +9,8 @@
     "test": "jest --coverage",
     "lint": "eslint src/",
     "kill-port": "bash scripts/kill-port.sh",
-    "restart": "npm run kill-port && npm start"
+    "restart": "npm run kill-port && npm start",
+    "seed": "node scripts/seedData.js"
   },
   "keywords": [
     "lost-found",

@@ -66,28 +66,6 @@ router.get('/search', lostItemController.searchLostItems);
 
 /**
  * @swagger
- * /api/lost-items/{id}:
- *   get:
- *     summary: Xem chi tiết báo mất
- *     tags: [Lost Items]
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Lost item details
- *       404:
- *         description: Not found
- */
-router.get('/:id', authenticateToken, lostItemController.getLostItem);
-
-/**
- * @swagger
  * /api/lost-items/my-reports:
  *   get:
  *     summary: Xem báo cáo của tôi
@@ -116,6 +94,28 @@ router.get('/:id', authenticateToken, lostItemController.getLostItem);
  *         description: User's reports
  */
 router.get('/my-reports', authenticateToken, roleCheck('student'), lostItemController.getMyReports);
+
+/**
+ * @swagger
+ * /api/lost-items/{id}:
+ *   get:
+ *     summary: Xem chi tiết báo mất
+ *     tags: [Lost Items]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Lost item details
+ *       404:
+ *         description: Not found
+ */
+router.get('/:id', authenticateToken, lostItemController.getLostItem);
 
 /**
  * @swagger
