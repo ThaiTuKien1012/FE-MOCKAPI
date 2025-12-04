@@ -1,4 +1,5 @@
 const ReturnTransaction = require('../models/ReturnTransaction');
+const FoundItem = require('../models/FoundItem');
 const idGenerator = require('../utils/idGenerator');
 
 exports.createReturn = async (req, res) => {
@@ -66,11 +67,46 @@ exports.getMyTransactions = async (req, res) => {
       .skip(skip)
       .limit(parseInt(limit));
 
+    // Populate found item information
+    const transactionsWithItems = await Promise.all(
+      transactions.map(async (transaction) => {
+        const transactionObj = transaction.toObject();
+        
+        // Get found item details if foundItemId exists
+        if (transaction.foundItemId) {
+          try {
+            // Try to find by _id first, then by foundId
+            let foundItem = await FoundItem.findById(transaction.foundItemId);
+            if (!foundItem) {
+              foundItem = await FoundItem.findOne({ foundId: transaction.foundItemId });
+            }
+            
+            if (foundItem) {
+              transactionObj.foundItem = {
+                _id: foundItem._id,
+                foundId: foundItem.foundId,
+                itemName: foundItem.itemName,
+                category: foundItem.category,
+                color: foundItem.color,
+                images: foundItem.images || [],
+                condition: foundItem.condition
+              };
+            }
+          } catch (err) {
+            // If found item not found, continue without it
+            console.error('Error fetching found item:', err);
+          }
+        }
+        
+        return transactionObj;
+      })
+    );
+
     const total = await ReturnTransaction.countDocuments({ studentId: req.userId });
 
     res.status(200).json({
       success: true,
-      data: transactions,
+      data: transactionsWithItems,
       pagination: {
         total,
         page: parseInt(page),
