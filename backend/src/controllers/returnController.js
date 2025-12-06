@@ -1,5 +1,6 @@
 const ReturnTransaction = require('../models/ReturnTransaction');
 const FoundItem = require('../models/FoundItem');
+const User = require('../models/User');
 const idGenerator = require('../utils/idGenerator');
 
 exports.createReturn = async (req, res) => {
@@ -39,7 +40,15 @@ exports.createReturn = async (req, res) => {
 
 exports.getReturnDetail = async (req, res) => {
   try {
-    const transaction = await ReturnTransaction.findById(req.params.transactionId);
+    const { transactionId } = req.params;
+    
+    // Try to find by transactionId (string) first, then by _id (ObjectId)
+    let transaction = await ReturnTransaction.findOne({ transactionId: transactionId });
+    
+    if (!transaction) {
+      // If not found by transactionId, try to find by _id
+      transaction = await ReturnTransaction.findById(transactionId);
+    }
 
     if (!transaction) {
       return res.status(404).json({
@@ -48,9 +57,69 @@ exports.getReturnDetail = async (req, res) => {
       });
     }
 
+    const transactionObj = transaction.toObject();
+
+    // Populate student information
+    if (transaction.studentId) {
+      try {
+        const student = await User.findById(transaction.studentId);
+        if (student) {
+          transactionObj.student = {
+            _id: student._id,
+            firstName: student.firstName,
+            lastName: student.lastName,
+            email: student.email,
+            phone: student.phone
+          };
+        }
+      } catch (err) {
+        console.error('Error fetching student:', err);
+      }
+    }
+
+    // Populate found item information
+    if (transaction.foundItemId) {
+      try {
+        let foundItem = await FoundItem.findById(transaction.foundItemId);
+        if (!foundItem) {
+          foundItem = await FoundItem.findOne({ foundId: transaction.foundItemId });
+        }
+        
+        if (foundItem) {
+          transactionObj.foundItem = {
+            _id: foundItem._id,
+            foundId: foundItem.foundId,
+            itemName: foundItem.itemName,
+            category: foundItem.category,
+            color: foundItem.color,
+            images: foundItem.images || [],
+            condition: foundItem.condition
+          };
+        }
+      } catch (err) {
+        console.error('Error fetching found item:', err);
+      }
+    }
+
+    // Populate security officer information
+    if (transaction.securityOfficerId) {
+      try {
+        const security = await User.findById(transaction.securityOfficerId);
+        if (security) {
+          transactionObj.securityOfficer = {
+            _id: security._id,
+            firstName: security.firstName,
+            lastName: security.lastName
+          };
+        }
+      } catch (err) {
+        console.error('Error fetching security officer:', err);
+      }
+    }
+
     res.status(200).json({
       success: true,
-      data: transaction
+      data: transactionObj
     });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
@@ -139,11 +208,78 @@ exports.listReturns = async (req, res) => {
       .skip(skip)
       .limit(parseInt(limit));
 
+    // Populate student and found item information
+    const transactionsWithDetails = await Promise.all(
+      transactions.map(async (transaction) => {
+        const transactionObj = transaction.toObject();
+        
+        // Get student information
+        if (transaction.studentId) {
+          try {
+            const student = await User.findById(transaction.studentId);
+            if (student) {
+              transactionObj.student = {
+                _id: student._id,
+                firstName: student.firstName,
+                lastName: student.lastName,
+                email: student.email,
+                phone: student.phone
+              };
+            }
+          } catch (err) {
+            console.error('Error fetching student:', err);
+          }
+        }
+
+        // Get found item information
+        if (transaction.foundItemId) {
+          try {
+            let foundItem = await FoundItem.findById(transaction.foundItemId);
+            if (!foundItem) {
+              foundItem = await FoundItem.findOne({ foundId: transaction.foundItemId });
+            }
+            
+            if (foundItem) {
+              transactionObj.foundItem = {
+                _id: foundItem._id,
+                foundId: foundItem.foundId,
+                itemName: foundItem.itemName,
+                category: foundItem.category,
+                color: foundItem.color,
+                images: foundItem.images || [],
+                condition: foundItem.condition
+              };
+            }
+          } catch (err) {
+            console.error('Error fetching found item:', err);
+          }
+        }
+
+        // Get security officer information
+        if (transaction.securityOfficerId) {
+          try {
+            const security = await User.findById(transaction.securityOfficerId);
+            if (security) {
+              transactionObj.securityOfficer = {
+                _id: security._id,
+                firstName: security.firstName,
+                lastName: security.lastName
+              };
+            }
+          } catch (err) {
+            console.error('Error fetching security officer:', err);
+          }
+        }
+        
+        return transactionObj;
+      })
+    );
+
     const total = await ReturnTransaction.countDocuments(query);
 
     res.status(200).json({
       success: true,
-      data: transactions,
+      data: transactionsWithDetails,
       pagination: {
         total,
         page: parseInt(page),

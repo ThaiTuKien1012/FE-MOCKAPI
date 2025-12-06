@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useFetch } from '../hooks/useFetch';
-import { useNotification } from '../hooks/useNotification';
+import { useFetch } from '../../hooks/useFetch';
+import { useNotification } from '../../hooks/useNotification';
 import { gsap } from 'gsap';
 import { Link } from 'react-router-dom';
-import lostItemService from '../api/lostItemService';
-import AnimatedBackground from '../components/common/AnimatedBackground';
+import lostItemService from '../../api/lostItemService';
+import AnimatedBackground from '../../components/common/AnimatedBackground';
 import { FiPackage, FiSearch, FiCheckCircle, FiXCircle, FiTrash2, FiFilter, FiEye } from 'react-icons/fi';
-import { formatDate, getStatusLabel, getStatusColor } from '../utils/helpers';
+import { formatDate, getStatusLabel, getStatusColor } from '../../utils/helpers';
 
 const LostItemsManagementPage = () => {
   const { showSuccess, showError } = useNotification();
@@ -181,7 +181,6 @@ const LostItemsManagementPage = () => {
                 <option value="pending">Chờ xác minh</option>
                 <option value="verified">Đã xác minh</option>
                 <option value="rejected">Đã từ chối</option>
-                <option value="matched">Đã khớp</option>
                 <option value="returned">Đã trả</option>
               </select>
             </div>

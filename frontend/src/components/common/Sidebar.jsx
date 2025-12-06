@@ -13,11 +13,10 @@ const Sidebar = () => {
     { path: '/lost-items', label: 'Báo Mất', icon: FiPackage, roles: ['student'] },
     { path: '/lost-items/management', label: 'Quản Lý Báo Mất', icon: FiPackage, roles: ['staff'] },
     { path: '/found-items/search', label: 'Tìm Kiếm Đồ Tìm Thấy', icon: FiSearch, roles: ['student'] },
-    { path: '/matching', label: 'Khớp Đồ', icon: FiTrendingUp, roles: ['student'] },
-    { path: '/matching/management', label: 'Quản Lý Khớp Đồ', icon: FiTrendingUp, roles: ['staff'] },
     { path: '/returns/my-transactions', label: 'Lịch Sử Trả Đồ', icon: FiClock, roles: ['student'] },
     { path: '/returns/management', label: 'Quản Lý Trả Đồ', icon: FiClock, roles: ['staff'] },
-    { path: '/found-items', label: 'Đồ Tìm Thấy', icon: FiCheckCircle, roles: ['security', 'staff'] },
+    { path: '/found-items/management', label: 'Quản Lý Đồ Tìm Thấy', icon: FiCheckCircle, roles: ['staff'] },
+    { path: '/found-items', label: 'Đồ Tìm Thấy', icon: FiCheckCircle, roles: ['security'] },
     { path: '/reports', label: 'Báo Cáo', icon: FiBarChart2, roles: ['staff', 'admin'] },
     { path: '/profile', label: 'Hồ Sơ', icon: FiUser, roles: ['student', 'staff', 'security', 'admin'] }
   ];

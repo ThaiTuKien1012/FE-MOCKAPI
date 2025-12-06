@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import { useFetch } from '../hooks/useFetch';
+import { useFetch } from '../../hooks/useFetch';
 import { gsap } from 'gsap';
-import reportService from '../api/reportService';
-import Dashboard from '../components/reports/Dashboard';
-import AnimatedBackground from '../components/common/AnimatedBackground';
+import reportService from '../../api/reportService';
+import Dashboard from '../../components/reports/Dashboard';
+import AnimatedBackground from '../../components/common/AnimatedBackground';
 import { FiBarChart2, FiTrendingUp } from 'react-icons/fi';
 
 const ReportsPage = () => {

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useFetch } from '../hooks/useFetch';
+import { useFetch } from '../../hooks/useFetch';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
-import returnService from '../api/returnService';
-import AnimatedBackground from '../components/common/AnimatedBackground';
+import returnService from '../../api/returnService';
+import AnimatedBackground from '../../components/common/AnimatedBackground';
 import { FiClock, FiCheckCircle, FiCalendar, FiMapPin, FiPackage, FiShield, FiImage, FiExternalLink } from 'react-icons/fi';
 
 const MyTransactionsPage = () => {

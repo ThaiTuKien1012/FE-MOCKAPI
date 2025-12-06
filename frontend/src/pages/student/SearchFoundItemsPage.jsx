@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
-import foundItemService from '../api/foundItemService';
-import AnimatedBackground from '../components/common/AnimatedBackground';
+import foundItemService from '../../api/foundItemService';
+import AnimatedBackground from '../../components/common/AnimatedBackground';
 import { FiSearch, FiPackage, FiFilter, FiImage, FiEye } from 'react-icons/fi';
 
 const SearchFoundItemsPage = () => {

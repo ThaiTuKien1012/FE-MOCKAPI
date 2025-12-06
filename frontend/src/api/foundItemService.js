@@ -95,6 +95,21 @@ const foundItemService = {
         error: error.response?.data?.error || 'Failed to update found item'
       };
     }
+  },
+
+  deleteFoundItem: async (itemId) => {
+    try {
+      const response = await axios.delete(
+        `${API_URL}/found-items/${itemId}`,
+        getHeaders()
+      );
+      return response.data;
+    } catch (error) {
+      return {
+        success: false,
+        error: error.response?.data?.error || 'Failed to delete found item'
+      };
+    }
   }
 };
 

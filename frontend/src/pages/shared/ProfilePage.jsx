@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useAuth } from '../hooks/useAuth';
-import { useFetch } from '../hooks/useFetch';
-import { useNotification } from '../hooks/useNotification';
+import { useAuth } from '../../hooks/useAuth';
+import { useFetch } from '../../hooks/useFetch';
+import { useNotification } from '../../hooks/useNotification';
 import { gsap } from 'gsap';
-import userService from '../api/userService';
-import AnimatedBackground from '../components/common/AnimatedBackground';
+import userService from '../../api/userService';
+import AnimatedBackground from '../../components/common/AnimatedBackground';
 import { FiUser, FiMail, FiShield, FiMapPin, FiEdit, FiSave, FiX, FiLock, FiPhone } from 'react-icons/fi';
 
 const ProfilePage = () => {

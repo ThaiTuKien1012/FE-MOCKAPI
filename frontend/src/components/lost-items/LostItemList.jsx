@@ -18,8 +18,6 @@ const LostItemList = ({ items, pagination, onPageChange }) => {
         return { bg: '#FEF3C7', color: '#92400E', border: '#FCD34D' };
       case 'verified':
         return { bg: '#DBEAFE', color: '#1E40AF', border: '#60A5FA' };
-      case 'matched':
-        return { bg: '#D1FAE5', color: '#065F46', border: '#34D399' };
       case 'returned':
         return { bg: '#E0E7FF', color: '#3730A3', border: '#818CF8' };
       default:

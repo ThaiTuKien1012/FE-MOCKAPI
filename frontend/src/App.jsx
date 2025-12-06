@@ -5,23 +5,29 @@ import { AuthProvider } from './context/AuthContext';
 import { NotificationProvider } from './context/NotificationContext';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
-// Pages
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import HomePage from './pages/HomePage';
-import LostItemsPage from './pages/LostItemsPage';
-import LostItemDetailPage from './pages/LostItemDetailPage';
-import LostItemsManagementPage from './pages/LostItemsManagementPage';
-import FoundItemsPage from './pages/FoundItemsPage';
-import SearchFoundItemsPage from './pages/SearchFoundItemsPage';
-import FoundItemDetailPage from './pages/FoundItemDetailPage';
-import MatchingPage from './pages/MatchingPage';
-import MatchingManagementPage from './pages/MatchingManagementPage';
-import MyTransactionsPage from './pages/MyTransactionsPage';
-import ReturnsManagementPage from './pages/ReturnsManagementPage';
-import ReportsPage from './pages/ReportsPage';
-import ProfilePage from './pages/ProfilePage';
-import NotFoundPage from './pages/NotFoundPage';
+// Pages - Auth
+import LoginPage from './pages/auth/LoginPage';
+import RegisterPage from './pages/auth/RegisterPage';
+
+// Pages - Shared
+import HomePage from './pages/shared/HomePage';
+import ProfilePage from './pages/shared/ProfilePage';
+import NotFoundPage from './pages/shared/NotFoundPage';
+
+// Pages - Student
+import LostItemsPage from './pages/student/LostItemsPage';
+import LostItemDetailPage from './pages/student/LostItemDetailPage';
+import FoundItemsPage from './pages/student/FoundItemsPage';
+import SearchFoundItemsPage from './pages/student/SearchFoundItemsPage';
+import FoundItemDetailPage from './pages/student/FoundItemDetailPage';
+import MyTransactionsPage from './pages/student/MyTransactionsPage';
+
+// Pages - Staff
+import LostItemsManagementPage from './pages/staff/LostItemsManagementPage';
+import ReturnsManagementPage from './pages/staff/ReturnsManagementPage';
+import ReturnDetailPage from './pages/staff/ReturnDetailPage';
+import ReportsPage from './pages/staff/ReportsPage';
+import FoundItemsManagementPage from './pages/staff/FoundItemsManagementPage';
 
 // Layouts
 import Sidebar from './components/common/Sidebar';
@@ -75,6 +81,15 @@ const AppContent = () => {
               />
               
               <Route
+                path="/found-items/management"
+                element={
+                  <ProtectedRoute>
+                    <FoundItemsManagementPage />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route
                 path="/found-items"
                 element={
                   <ProtectedRoute>
@@ -101,22 +116,6 @@ const AppContent = () => {
                 }
               />
               
-              <Route
-                path="/matching/management"
-                element={
-                  <ProtectedRoute>
-                    <MatchingManagementPage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/matching"
-                element={
-                  <ProtectedRoute>
-                    <MatchingPage />
-                  </ProtectedRoute>
-                }
-              />
 
               <Route
                 path="/returns/management"
@@ -131,6 +130,14 @@ const AppContent = () => {
                 element={
                   <ProtectedRoute>
                     <MyTransactionsPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/returns/:transactionId"
+                element={
+                  <ProtectedRoute>
+                    <ReturnDetailPage />
                   </ProtectedRoute>
                 }
               />

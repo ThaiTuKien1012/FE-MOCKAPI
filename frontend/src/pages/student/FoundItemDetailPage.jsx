@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useFetch } from '../hooks/useFetch';
+import { useFetch } from '../../hooks/useFetch';
+import { useAuth } from '../../hooks/useAuth';
+import { useNotification } from '../../hooks/useNotification';
 import { gsap } from 'gsap';
-import foundItemService from '../api/foundItemService';
-import AnimatedBackground from '../components/common/AnimatedBackground';
+import foundItemService from '../../api/foundItemService';
+import AnimatedBackground from '../../components/common/AnimatedBackground';
 import { 
   FiArrowLeft, 
   FiPackage, 
@@ -15,12 +17,14 @@ import {
   FiMail,
   FiPhone
 } from 'react-icons/fi';
-import { formatDate } from '../utils/helpers';
-import { CATEGORIES, CAMPUSES } from '../utils/constants';
+import { formatDate } from '../../utils/helpers';
+import { CATEGORIES, CAMPUSES } from '../../utils/constants';
 
 const FoundItemDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const { showSuccess, showError } = useNotification();
   
   const pageRef = useRef(null);
   const headerRef = useRef(null);
@@ -88,6 +92,7 @@ const FoundItemDetailPage = () => {
     const camp = CAMPUSES.find(c => c.value === campus);
     return camp ? camp.label : campus;
   };
+
 
   if (loading) {
     return (
@@ -275,10 +280,12 @@ const FoundItemDetailPage = () => {
                   </div>
                 )}
               </div>
+
             </div>
           </div>
         </div>
       </div>
+
     </div>
   );
 };

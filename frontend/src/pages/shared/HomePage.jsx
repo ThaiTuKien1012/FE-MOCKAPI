@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { FiPackage, FiSearch, FiTrendingUp, FiBarChart2, FiPlus, FiCheckCircle } from 'react-icons/fi';
-import AnimatedBackground from '../components/common/AnimatedBackground';
-import StudentStats from '../components/common/StudentStats';
-import { useFetch } from '../hooks/useFetch';
-import reportService from '../api/reportService';
+import AnimatedBackground from '../../components/common/AnimatedBackground';
+import StudentStats from '../../components/common/StudentStats';
+import { useFetch } from '../../hooks/useFetch';
+import reportService from '../../api/reportService';
 
 const HomePage = () => {
   const { user } = useAuth();
@@ -94,13 +94,6 @@ const HomePage = () => {
       title: 'Ghi Nhận Đồ Tìm Thấy',
       description: 'Ghi nhận đồ vật được tìm thấy',
       color: '#22C55E'
-    },
-    {
-      to: '/matching',
-      icon: FiTrendingUp,
-      title: 'Khớp Đồ',
-      description: 'Xem các gợi ý khớp đồ',
-      color: '#06B6D4'
     },
     (user?.role === 'staff' || user?.role === 'admin') && {
       to: '/reports',

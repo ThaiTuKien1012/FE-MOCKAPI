@@ -116,10 +116,6 @@ const options = {
         description: 'File upload endpoints'
       },
       {
-        name: 'Matching',
-        description: 'Item matching and suggestions'
-      },
-      {
         name: 'Returns',
         description: 'Return transaction management'
       },

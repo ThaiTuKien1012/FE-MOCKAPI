@@ -42,7 +42,6 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/lost-items', require('./routes/lost-items'));
 app.use('/api/found-items', require('./routes/found-items'));
 app.use('/api/upload', require('./routes/upload'));
-app.use('/api/matching', require('./routes/matching'));
 app.use('/api/returns', require('./routes/returns'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/reports', require('./routes/reports'));

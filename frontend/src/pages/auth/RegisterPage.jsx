@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
-import { useNotification } from '../hooks/useNotification';
-import { useForm } from '../hooks/useForm';
+import { useAuth } from '../../hooks/useAuth';
+import { useNotification } from '../../hooks/useNotification';
+import { useForm } from '../../hooks/useForm';
 
 const RegisterPage = () => {
   const navigate = useNavigate();

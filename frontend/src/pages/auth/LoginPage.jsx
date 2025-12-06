@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
-import { useNotification } from '../hooks/useNotification';
+import { useAuth } from '../../hooks/useAuth';
+import { useNotification } from '../../hooks/useNotification';
 import { gsap } from 'gsap';
-import LoginForm from '../components/auth/LoginForm';
-import VideoBackground from '../components/auth/VideoBackground';
+import LoginForm from '../../components/auth/LoginForm';
+import VideoBackground from '../../components/auth/VideoBackground';
 import { FiShield, FiSearch, FiPackage } from 'react-icons/fi';
 
 const LoginPage = () => {

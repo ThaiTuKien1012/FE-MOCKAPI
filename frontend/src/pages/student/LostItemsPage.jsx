@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useAuth } from '../hooks/useAuth';
-import { useFetch } from '../hooks/useFetch';
-import { useNotification } from '../hooks/useNotification';
+import { useAuth } from '../../hooks/useAuth';
+import { useFetch } from '../../hooks/useFetch';
+import { useNotification } from '../../hooks/useNotification';
 import { gsap } from 'gsap';
-import lostItemService from '../api/lostItemService';
-import LostItemForm from '../components/lost-items/LostItemForm';
-import LostItemList from '../components/lost-items/LostItemList';
-import AnimatedBackground from '../components/common/AnimatedBackground';
+import lostItemService from '../../api/lostItemService';
+import LostItemForm from '../../components/lost-items/LostItemForm';
+import LostItemList from '../../components/lost-items/LostItemList';
+import AnimatedBackground from '../../components/common/AnimatedBackground';
 import { FiPlus, FiX, FiPackage } from 'react-icons/fi';
 
 const LostItemsPage = () => {

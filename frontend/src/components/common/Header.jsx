@@ -49,7 +49,6 @@ const Header = () => {
   const navItems = [
     { path: '/lost-items', label: 'Báo Mất', icon: FiPackage },
     { path: '/found-items', label: 'Đồ Tìm Thấy', icon: FiSearch },
-    { path: '/matching', label: 'Khớp Đồ', icon: FiSearch },
     { path: '/reports', label: 'Báo Cáo', icon: FiBarChart2 },
     { path: '/profile', label: 'Hồ Sơ', icon: FiUser }
   ];

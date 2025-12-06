@@ -18,7 +18,6 @@ export const STATUSES = {
   pending: 'Chờ xác nhận',
   verified: 'Đã xác nhận',
   rejected: 'Bị từ chối',
-  matched: 'Khớp với đồ tìm thấy',
   returned: 'Đã trả',
   unclaimed: 'Chưa được nhận'
 };

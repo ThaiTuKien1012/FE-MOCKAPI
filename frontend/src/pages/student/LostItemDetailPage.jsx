@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link, useLocation } from 'react-router-dom';
-import { useFetch } from '../hooks/useFetch';
-import { useNotification } from '../hooks/useNotification';
+import { useFetch } from '../../hooks/useFetch';
+import { useNotification } from '../../hooks/useNotification';
 import { gsap } from 'gsap';
-import lostItemService from '../api/lostItemService';
-import uploadService from '../api/uploadService';
-import AnimatedBackground from '../components/common/AnimatedBackground';
+import lostItemService from '../../api/lostItemService';
+import uploadService from '../../api/uploadService';
+import AnimatedBackground from '../../components/common/AnimatedBackground';
 import { 
   FiArrowLeft, 
   FiPackage, 
@@ -21,8 +21,8 @@ import {
   FiUpload,
   FiXCircle
 } from 'react-icons/fi';
-import { formatDate, getStatusLabel } from '../utils/helpers';
-import { CATEGORIES, CAMPUSES } from '../utils/constants';
+import { formatDate, getStatusLabel } from '../../utils/helpers';
+import { CATEGORIES, CAMPUSES } from '../../utils/constants';
 
 const LostItemDetailPage = () => {
   const { id } = useParams();
@@ -310,8 +310,6 @@ const LostItemDetailPage = () => {
         return { bg: '#FEF3C7', color: '#92400E', border: '#FCD34D' };
       case 'verified':
         return { bg: '#DBEAFE', color: '#1E40AF', border: '#60A5FA' };
-      case 'matched':
-        return { bg: '#D1FAE5', color: '#065F46', border: '#34D399' };
       case 'returned':
         return { bg: '#E0E7FF', color: '#3730A3', border: '#818CF8' };
       default:
