@@ -13,6 +13,7 @@ import RegisterPage from './pages/auth/RegisterPage';
 import HomePage from './pages/shared/HomePage';
 import ProfilePage from './pages/shared/ProfilePage';
 import NotFoundPage from './pages/shared/NotFoundPage';
+import MatchingPage from './pages/shared/MatchingPage';
 
 // Pages - Student
 import LostItemsPage from './pages/student/LostItemsPage';
@@ -28,6 +29,13 @@ import ReturnsManagementPage from './pages/staff/ReturnsManagementPage';
 import ReturnDetailPage from './pages/staff/ReturnDetailPage';
 import ReportsPage from './pages/staff/ReportsPage';
 import FoundItemsManagementPage from './pages/staff/FoundItemsManagementPage';
+import MatchingManagementPage from './pages/staff/MatchingManagementPage';
+
+// Pages - Security
+import SecurityDashboardStatsPage from './pages/security/SecurityDashboardStatsPage';
+import SecurityFoundItemsListPage from './pages/security/SecurityFoundItemsListPage';
+import SecurityReadyToReturnPage from './pages/security/SecurityReadyToReturnPage';
+import SecurityReturnHistoryPage from './pages/security/SecurityReturnHistoryPage';
 
 // Layouts
 import Sidebar from './components/common/Sidebar';
@@ -117,6 +125,54 @@ const AppContent = () => {
               />
               
 
+              <Route
+                path="/matching"
+                element={
+                  <ProtectedRoute>
+                    <MatchingPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/matching/management"
+                element={
+                  <ProtectedRoute>
+                    <MatchingManagementPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/security/dashboard"
+                element={
+                  <ProtectedRoute requiredRole="security">
+                    <SecurityDashboardStatsPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/security/found-items/list"
+                element={
+                  <ProtectedRoute requiredRole="security">
+                    <SecurityFoundItemsListPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/security/ready-to-return"
+                element={
+                  <ProtectedRoute requiredRole="security">
+                    <SecurityReadyToReturnPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/security/return-history"
+                element={
+                  <ProtectedRoute requiredRole="security">
+                    <SecurityReturnHistoryPage />
+                  </ProtectedRoute>
+                }
+              />
               <Route
                 path="/returns/management"
                 element={

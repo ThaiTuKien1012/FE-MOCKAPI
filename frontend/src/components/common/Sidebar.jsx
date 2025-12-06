@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import { FiHome, FiPackage, FiSearch, FiBarChart2, FiTrendingUp, FiUser, FiLogOut, FiCheckCircle, FiClock } from 'react-icons/fi';
+import { FiHome, FiPackage, FiSearch, FiBarChart2, FiTrendingUp, FiUser, FiLogOut, FiCheckCircle, FiClock, FiPlus, FiList } from 'react-icons/fi';
 
 const Sidebar = () => {
   const location = useLocation();
@@ -13,10 +13,15 @@ const Sidebar = () => {
     { path: '/lost-items', label: 'Báo Mất', icon: FiPackage, roles: ['student'] },
     { path: '/lost-items/management', label: 'Quản Lý Báo Mất', icon: FiPackage, roles: ['staff'] },
     { path: '/found-items/search', label: 'Tìm Kiếm Đồ Tìm Thấy', icon: FiSearch, roles: ['student'] },
+    { path: '/matching', label: 'Matching Requests', icon: FiTrendingUp, roles: ['student'] },
+    { path: '/matching/management', label: 'Quản Lý Khớp Đồ', icon: FiTrendingUp, roles: ['staff'] },
+    { path: '/security/dashboard', label: 'Thống Kê', icon: FiBarChart2, roles: ['security'] },
+    { path: '/security/found-items/list', label: 'Danh Sách Đồ', icon: FiList, roles: ['security'] },
+    { path: '/security/ready-to-return', label: 'Đồ Sẵn Sàng Trả', icon: FiCheckCircle, roles: ['security'] },
+    { path: '/security/return-history', label: 'Lịch Sử Trả', icon: FiClock, roles: ['security'] },
     { path: '/returns/my-transactions', label: 'Lịch Sử Trả Đồ', icon: FiClock, roles: ['student'] },
     { path: '/returns/management', label: 'Quản Lý Trả Đồ', icon: FiClock, roles: ['staff'] },
     { path: '/found-items/management', label: 'Quản Lý Đồ Tìm Thấy', icon: FiCheckCircle, roles: ['staff'] },
-    { path: '/found-items', label: 'Đồ Tìm Thấy', icon: FiCheckCircle, roles: ['security'] },
     { path: '/reports', label: 'Báo Cáo', icon: FiBarChart2, roles: ['staff', 'admin'] },
     { path: '/profile', label: 'Hồ Sơ', icon: FiUser, roles: ['student', 'staff', 'security', 'admin'] }
   ];

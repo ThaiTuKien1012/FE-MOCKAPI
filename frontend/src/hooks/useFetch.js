@@ -18,8 +18,14 @@ export const useFetch = (fetchFn, dependencies = []) => {
             // API returned {success: true, data: [...], pagination: {...}}
             setData(result);
           } else if (result.success === false) {
-            // API returned error
-            setError(result.error || 'Failed to fetch data');
+            // API returned error - ensure it's a string
+            let errorMsg = 'Failed to fetch data';
+            if (typeof result.error === 'string') {
+              errorMsg = result.error;
+            } else if (result.error && typeof result.error === 'object') {
+              errorMsg = result.error.message || result.error.code || JSON.stringify(result.error);
+            }
+            setError(errorMsg);
             setData(null);
           } else {
             // Direct data response (no success property)

@@ -12,6 +12,10 @@ const foundItemSchema = new Schema({
     type: String, 
     required: true 
   },
+  discoveredBy: { 
+    type: String, 
+    index: true 
+  },
   itemName: { 
     type: String, 
     required: true, 
