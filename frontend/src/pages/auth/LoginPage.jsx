@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { useNotification } from '../../hooks/useNotification';
 import { gsap } from 'gsap';
 import LoginForm from '../../components/auth/LoginForm';
+import TestAccounts from '../../components/auth/TestAccounts';
 import VideoBackground from '../../components/auth/VideoBackground';
 import { FiShield, FiSearch, FiPackage } from 'react-icons/fi';
 
@@ -15,6 +16,7 @@ const LoginPage = () => {
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
   const cardRef = useRef(null);
+  const [formValues, setFormValues] = useState({ email: '', password: '' });
 
   useEffect(() => {
     // Animate page entrance
@@ -105,8 +107,14 @@ const LoginPage = () => {
           gsap.set(cardRef.current, { x: 0 });
         }
       });
-      showError(result.error?.message || 'Đăng nhập thất bại');
+      showError(result.error || 'Đăng nhập thất bại');
     }
+  };
+
+  const handleSelectAccount = (account) => {
+    setFormValues(account);
+    // Show success notification
+    showSuccess(`Đã điền thông tin: ${account.email}`);
   };
 
   return (
@@ -133,7 +141,9 @@ const LoginPage = () => {
             </div>
           </div>
 
-          <LoginForm onSubmit={handleLogin} />
+          <LoginForm onSubmit={handleLogin} initialValues={formValues} />
+
+          <TestAccounts onSelectAccount={handleSelectAccount} />
 
           <div className="login-footer">
             <p className="register-link">

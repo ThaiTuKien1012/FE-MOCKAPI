@@ -3,14 +3,21 @@ import { useForm } from '../../hooks/useForm';
 import { gsap } from 'gsap';
 import { FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 
-const LoginForm = ({ onSubmit }) => {
-  const { values, handleChange, handleSubmit, isSubmitting } = useForm(
+const LoginForm = ({ onSubmit, initialValues }) => {
+  const { values, handleChange, handleSubmit, isSubmitting, setValues } = useForm(
     {
-      email: '',
-      password: ''
+      email: initialValues?.email || '',
+      password: initialValues?.password || ''
     },
     onSubmit
   );
+
+  // Update form when initialValues change
+  React.useEffect(() => {
+    if (initialValues) {
+      setValues(initialValues);
+    }
+  }, [initialValues, setValues]);
 
   const [showPassword, setShowPassword] = useState(false);
   const formRef = useRef(null);
